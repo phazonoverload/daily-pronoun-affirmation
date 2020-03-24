@@ -22,7 +22,7 @@ exports.handler = async (event, context) => {
         if(users.length > 0) {
             if(text.toLowerCase().trim() == 'stop') {
                 await userBase.delete(users[0].id);
-                sendMessage(msisdn, 'You have been unsubscribed. If you would like to sign up again with either the same or a different name (or set of pronouns) just message us again with your name!')
+                sendMessage(msisdn, 'You have been unsubscribed. If you would like to sign up again visit www.validationstation.net or reply with your name!')
                 return { headers, statusCode: 200, body: 'ok' }
             }
 

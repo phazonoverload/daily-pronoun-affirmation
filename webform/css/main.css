@@ -39,15 +39,17 @@ body, html {
 
 /*---------------------------------------------*/
 a {
-	font-family: Poppins-Regular;
-	font-size: 14px;
-	line-height: 1.7;
+	
 	color: #666666;
-	margin: 0px;
 	transition: all 0.4s;
 	-webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
+  font-family: Poppins-Bold;
+  font-size: 10px;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 a:focus {
@@ -56,7 +58,7 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
-	color: #57b846;
+	color: #969696;
 }
 
 /*---------------------------------------------*/
@@ -168,10 +170,12 @@ iframe {
   width: 100%;
 }
 
+
+
 .contact3-form-title {
   display: block;
   font-family: Poppins-Bold;
-  font-size: 12px;
+  font-size: 14px;
   color: #000000;
   line-height: 1.2;
   text-align: center;
@@ -183,14 +187,22 @@ iframe {
 .contact3-form-footer {
   display: block;
   font-family: Poppins-Bold;
-  font-size: 10px;
+  font-size: 11px;
   color: #000000;
   line-height: 1.2;
   text-align: center;
   text-transform: uppercase;
   margin-top: 25px;
 }
-
+.contact3-form-credits {
+  display: block;
+  font-family: Poppins-Bold;
+  font-size: 10px;
+  color: #333333;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+}
 
 
 /*------------------------------------------------------------------
@@ -266,8 +278,10 @@ textarea.input3 {
 /*------------------------------------------------------------------
 [  ]*/
 .container-contact3-form-btn {
-  padding-top: 23px;
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
 
 .contact3-form-btn {
   font-family: Poppins-Medium;
