@@ -66,5 +66,7 @@ exports.handler = async (event, context) => {
 }
 
 function sendMessage(msisdn, message) {
-    nexmo.message.sendSms(process.env.NEXMO_PHONE_NUMBER, msisdn, message)
+    nexmo.message.sendSms(process.env.NEXMO_PHONE_NUMBER, msisdn, message, err => {
+        console.log(err)
+    })
 }
