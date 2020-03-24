@@ -22,7 +22,7 @@ exports.handler = async (event, context) => {
         if(users.length > 0) {
             if(text.toLowerCase().trim() == 'stop') {
                 await userBase.delete(users[0].id);
-                sendMessage(msisdn, 'You have been unsubscribed.')
+                sendMessage(msisdn, 'You have been unsubscribed. If you would like to sign up again with either the same or a different name (or set of pronouns) just message us again with your name!')
                 return { headers, statusCode: 200, body: 'ok' }
             }
 
@@ -41,17 +41,18 @@ exports.handler = async (event, context) => {
                         await userBase.update(users[0].id, { pronouns: text })
                         break;
                 }
-                sendMessage(msisdn, 'Fantastic! We will send you a nice affirmation soon. Text STOP to unsubscribe.')
+                sendMessage(msisdn, 'Fantastic, thanks for confirming your pronouns! We will send you a nice affirmation message at around lunchtime (in the UK) every day. Text STOP to unsubscribe or to change your name and pronouns.')
             } else {
-                sendMessage(msisdn, 'We have alraedy got you. If you want to change your pronouns text STOP to unsubscribe and then send your name in to resubscribe with new pronouns.')
+                sendMessage(msisdn, 'Thanks for messaging The Affirmation Station. We have alraedy got your number in our system! If you want to change your pronouns text STOP to unsubscribe and then send your name in to resubscribe with new pronouns.')
             }
         } else {
             await userBase.create({ msisdn, name: text })
             const message = [
-                '1 for they/them',
-                '2 for she/her',
-                '3 for he/him',
-                'Or reply with your own in that format'
+                'Welcome to the Affirmation Station! Thanks for sending us your name. Now all we need are your pronouns. Please reply with:',
+                '1 to use They/Them',
+                '2 to use She/Her',
+                '3 to use He/Him',
+                'Or reply with your own in that format (e.g. Ze/Zir).'
             ]
             sendMessage(msisdn, message.join('\n'))
         }
