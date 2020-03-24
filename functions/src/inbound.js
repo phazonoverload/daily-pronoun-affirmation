@@ -18,8 +18,9 @@ exports.handler = async (event, context) => {
     try {
         const { msisdn, text } = event.queryStringParameters
 
+        console.log(process.env.NEXMO_API_KEY, process.env.NEXMO_API_SECRET, process.env.NEXMO_PHONE_NUMBER);
+
         const users = await userBase.read({ filterByFormula: `{msisdn} = "${msisdn}"` });
-        console.log(users.length);
         if(users.length > 0) {
             if(text.toLowerCase().trim() == 'stop') {
                 await userBase.delete(users[0].id);
