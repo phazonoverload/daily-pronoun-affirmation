@@ -1,0 +1,18 @@
+{
+  "name": "affirmation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "netlify:dev": "netlify-lambda serve functions/src"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "airtable": "^0.8.1",
+    "airtable-plus": "^1.0.4",
+    "dotenv": "^8.2.0",
+    "netlify-lambda": "^1.6.3",
+    "nexmo": "^2.6.0"
+  }
+}

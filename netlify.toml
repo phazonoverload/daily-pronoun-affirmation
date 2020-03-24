@@ -1,0 +1,10 @@
+[build]
+    functions = "./functions/build"
+    command = "#"
+
+[template.environment]
+    NEXMO_API_KEY= "Your Nexmo API Key"
+    NEXMO_API_SECRET= "Your Nexmo API Secret"
+    NEXMO_PHONE_NUMBER= "Your Nexmo Phone Number"
+    AIRTABLE_API_KEY= "Your Airtable API Key"
+    AIRTABLE_BASE_ID= "Your Airtable Base ID"
