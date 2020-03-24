@@ -18,7 +18,7 @@ exports.handler = async (event, context) => {
     try {
         const { msisdn, text } = event.queryStringParameters
 
-        console.log(process.env.NEXMO_API_KEY, process.env.NEXMO_API_SECRET, process.env.NEXMO_PHONE_NUMBER);
+        console.log(msisdn, text);
 
         const users = await userBase.read({ filterByFormula: `{msisdn} = "${msisdn}"` });
         if(users.length > 0) {
@@ -68,6 +68,8 @@ exports.handler = async (event, context) => {
 }
 
 function sendMessage(msisdn, message) {
+
+    console.log(msisdn, message);
     nexmo.message.sendSms(process.env.NEXMO_PHONE_NUMBER, msisdn, message, err => {
         console.log(err)
     })
