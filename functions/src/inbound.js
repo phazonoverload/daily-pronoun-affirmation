@@ -46,13 +46,13 @@ exports.handler = async (event, context) => {
                 sendMessage(msisdn, 'Fantastic, thanks for confirming your pronouns! We will send you a nice affirmation message at around lunchtime (in the UK) every day. Text STOP to unsubscribe or to change your name and pronouns.')
                 return { headers, statusCode: 200, body: 'ok' }
             } else {
-                sendMessage(msisdn, 'Thanks for messaging The Affirmation Station. We have already got your number in our system! If you want to change your pronouns text STOP to unsubscribe and then send your name in to resubscribe with new pronouns.')
+                sendMessage(msisdn, 'Thanks for messaging The Validation Station. We have already got your number in our system! If you want to change your pronouns text STOP to unsubscribe and then send your name in to resubscribe with new pronouns.')
                 return { headers, statusCode: 200, body: 'ok' }
             }
         } else {
             await userBase.create({ msisdn, name: text })
             const message = [
-                'Welcome to the Affirmation Station! Thanks for sending us your name. Now all we need are your pronouns. Please reply with:',
+                'Welcome to The Validation Station! Thanks for sending us your name. Now all we need are your pronouns. Please reply with:',
                 '1 to use They/Them',
                 '2 to use She/Her',
                 '3 to use He/Him',
