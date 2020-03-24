@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Contact V3</title>
+	<title>The Validation Station</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -27,23 +27,26 @@
 		<div class="container-contact3">
 			<div class="wrap-contact3">
 				<form class="contact3-form validate-form" action="submit.php" method="post">
-					<span class="contact3-form-title">
+					<span>
 						<img src="images/logo.png" width="400px">
-						Here is a subheading
+					</span>
+
+					<span class="contact3-form-title">
+						Delivering Affirmation to The Trans Community
 					</span>
 
 					<div class="wrap-input3 validate-input" data-validate="Just your first name, please!">
-						<input class="input3" type="text" name="name" placeholder="First Name">
+						<input class="input3" type="text" required pattern="^[a-zA-Z]+$" name="name" placeholder="First Name">
 						<span class="focus-input3"></span>
 					</div>
 
 					<div class="wrap-input3 validate-input" data-validate = "A valid phone number is required, starting with the country code.">
-						<input class="input3" type="tel" pattern="^\d{11}$" name="msisdn" placeholder="Mobile Number (e.g. 447234567689)">
+						<input class="input3" type="tel" required pattern="^\d{12}$" name="msisdn" placeholder="Mobile Number (e.g. 447234567689)">
 						<span class="focus-input3"></span>
 					</div>
 
 					<div class="wrap-input3 validate-input" data-validate = "Any pronouns work but please use He/Him format.">
-						<input class="input3" type="text" name="pronouns" placeholder="Pronouns (e.g. They/Them; She/Her; Ze/Zir)">
+						<input class="input3" required type="text" name="pronouns" placeholder="Pronouns (e.g. They/Them; She/Her; Ze/Zir)">
 						<span class="focus-input3"></span>
 					</div>
 
@@ -53,7 +56,7 @@
 						</button>
 					</div>
 				</form>
-				Here is a footer
+				<span class="contact3-form-footer">Text 'stop' at any time to unsubscribe.<br />This app is by...</span>
 			</div>
 		</div>
 	</div>

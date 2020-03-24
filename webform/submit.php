@@ -6,11 +6,6 @@ $pronouns = $_POST['pronouns'];
 
 $postData = '{"name": "' . $name . '", "msisdn": "' . $msisdn . '", "pronouns": "' . $pronouns . '"}';
 
-
-echo $postData;
-
-echo "..........";
-
 $ch = curl_init( 'https://affirmation-station.netlify.com/.netlify/functions/create' );
 # Setup request to send json via POST.
 curl_setopt( $ch, CURLOPT_POSTFIELDS, $postData );
@@ -21,6 +16,10 @@ curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 $result = curl_exec($ch);
 curl_close($ch);
 
-echo $result;
+if ( json_decode($result)->message === 'Successfully created' ) {
+  header("Refresh:3; url=thanks.html");
+} else {
+  echo "Error, please go back and try again";
+}
 
 ?>
