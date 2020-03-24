@@ -16,7 +16,7 @@ const headers = {
 
 exports.handler = async (event, context) => {
     try {
-        const { msisdn, text } = JSON.parse('{"' + decodeURI(event.body).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"').replace(/\+/g, " ") + '"}')
+        const { msisdn, text } = JSON.parse('{"' + event.body.split("&").join('","').split("=").join('":"').split("+").join(" ") + '"}')
 
         const users = await userBase.read({ filterByFormula: `{msisdn} = "${msisdn}"` });
         if(users.length > 0) {
