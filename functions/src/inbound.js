@@ -16,7 +16,7 @@ const headers = {
 
 exports.handler = async (event, context) => {
     try {
-        console.log(event.body);
+        console.log(event);
         const msisdn = event.body.split('msisdn=')[1].split('&')[0]
         const text = event.body.split('&text=')[1].split('&')[0]
 
