@@ -19,6 +19,7 @@ exports.handler = async (event, context) => {
         const { msisdn, text } = event.queryStringParameters
 
         const users = await userBase.read({ filterByFormula: `{msisdn} = "${msisdn}"` });
+        console.log(users.length);
         if(users.length > 0) {
             if(text.toLowerCase().trim() == 'stop') {
                 await userBase.delete(users[0].id);
@@ -43,7 +44,7 @@ exports.handler = async (event, context) => {
                 }
                 sendMessage(msisdn, 'Fantastic, thanks for confirming your pronouns! We will send you a nice affirmation message at around lunchtime (in the UK) every day. Text STOP to unsubscribe or to change your name and pronouns.')
             } else {
-                sendMessage(msisdn, 'Thanks for messaging The Affirmation Station. We have alraedy got your number in our system! If you want to change your pronouns text STOP to unsubscribe and then send your name in to resubscribe with new pronouns.')
+                sendMessage(msisdn, 'Thanks for messaging The Affirmation Station. We have already got your number in our system! If you want to change your pronouns text STOP to unsubscribe and then send your name in to resubscribe with new pronouns.')
             }
         } else {
             await userBase.create({ msisdn, name: text })
