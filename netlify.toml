@@ -1,6 +1,6 @@
 [build]
     functions = "./functions/build"
-    command = "#"
+    command = "npm run netlify:build"
 
 [template.environment]
     NEXMO_API_KEY= "Your Nexmo API Key"
