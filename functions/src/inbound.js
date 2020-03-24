@@ -44,8 +44,10 @@ exports.handler = async (event, context) => {
                         break;
                 }
                 sendMessage(msisdn, 'Fantastic, thanks for confirming your pronouns! We will send you a nice affirmation message at around lunchtime (in the UK) every day. Text STOP to unsubscribe or to change your name and pronouns.')
+                return { headers, statusCode: 200, body: 'ok' }
             } else {
                 sendMessage(msisdn, 'Thanks for messaging The Affirmation Station. We have already got your number in our system! If you want to change your pronouns text STOP to unsubscribe and then send your name in to resubscribe with new pronouns.')
+                return { headers, statusCode: 200, body: 'ok' }
             }
         } else {
             await userBase.create({ msisdn, name: text })
@@ -57,9 +59,8 @@ exports.handler = async (event, context) => {
                 'Or reply with your own in that format (e.g. Ze/Zir).'
             ]
             sendMessage(msisdn, message.join('\n'))
+            return { headers, statusCode: 200, body: 'ok' }
         }
-
-        return { headers, statusCode: 200, body: 'ok' }
         
     } catch(e) {
         console.error(e);
@@ -68,7 +69,6 @@ exports.handler = async (event, context) => {
 }
 
 function sendMessage(msisdn, message) {
-
     console.log(msisdn, message);
     nexmo.message.sendSms(process.env.NEXMO_PHONE_NUMBER, msisdn, message, err => {
         console.log(err)
