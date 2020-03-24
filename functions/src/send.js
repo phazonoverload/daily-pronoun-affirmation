@@ -39,7 +39,7 @@ exports.handler = async (event, context) => {
                     break;
             }
             
-            sendMessage(user.fields.msisdn, text)
+            sendMessage(user.fields.msisdn, text.split('NAME').join(user.fields.name))
         }
         
         return { headers, statusCode: 200, body: 'ok' }
