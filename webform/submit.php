@@ -2,7 +2,7 @@
 
 $name = $_POST['name'];
 $msisdn = $_POST['msisdn'];
-$pronouns = $_POST['Pronouns'];
+$pronouns = $_POST['pronouns'];
 
 $postData = '{"name": "' . $name . '", "msisdn": "' . $msisdn . '", "pronouns": "' . $pronouns . '"}';
 
