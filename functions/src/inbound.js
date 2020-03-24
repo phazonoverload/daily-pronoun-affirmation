@@ -16,9 +16,7 @@ const headers = {
 
 exports.handler = async (event, context) => {
     try {
-        console.log(event);
-        const msisdn = event.body.split('msisdn=')[1].split('&')[0]
-        const text = event.body.split('&text=')[1].split('&')[0]
+        const { msisdn, text } = event.queryStringParameters
 
         const users = await userBase.read({ filterByFormula: `{msisdn} = "${msisdn}"` });
         if(users.length > 0) {
