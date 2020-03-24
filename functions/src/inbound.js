@@ -18,8 +18,6 @@ exports.handler = async (event, context) => {
     try {
         const { msisdn, text } = event.queryStringParameters
 
-        console.log(msisdn, text);
-
         const users = await userBase.read({ filterByFormula: `{msisdn} = "${msisdn}"` });
         if(users.length > 0) {
             if(text.toLowerCase().trim() == 'stop') {
@@ -29,22 +27,27 @@ exports.handler = async (event, context) => {
             }
 
             if(!users[0].fields.pronouns) {
-                switch(text) {
-                    case '1':
-                        await userBase.update(users[0].id, { pronouns: 'they/them' })
-                        break;
-                    case '2':
-                        await userBase.update(users[0].id, { pronouns: 'she/her' })
-                        break;
-                    case '3':
-                        await userBase.update(users[0].id, { pronouns: 'he/him' })
-                        break;
-                    default:
-                        await userBase.update(users[0].id, { pronouns: text })
-                        break;
+                if(text.includes("/")) {
+                    switch(text) {
+                        case '1':
+                            await userBase.update(users[0].id, { pronouns: 'they/them' })
+                            break;
+                        case '2':
+                            await userBase.update(users[0].id, { pronouns: 'she/her' })
+                            break;
+                        case '3':
+                            await userBase.update(users[0].id, { pronouns: 'he/him' })
+                            break;
+                        default:
+                            await userBase.update(users[0].id, { pronouns: text })
+                            break;
+                    }
+                    sendMessage(msisdn, 'Fantastic, thanks for confirming your pronouns! We will send you a nice affirmation message at around lunchtime (in the UK) every day. Text STOP to unsubscribe or to change your name and pronouns.')
+                    return { headers, statusCode: 200, body: 'ok' }
+                } else {
+                    sendMessage(msisdn, 'No / in pronouns error')
+                    return { headers, statusCode: 200, body: 'ok' }
                 }
-                sendMessage(msisdn, 'Fantastic, thanks for confirming your pronouns! We will send you a nice affirmation message at around lunchtime (in the UK) every day. Text STOP to unsubscribe or to change your name and pronouns.')
-                return { headers, statusCode: 200, body: 'ok' }
             } else {
                 sendMessage(msisdn, 'Thanks for messaging The Validation Station. We have already got your number in our system! If you want to change your pronouns text STOP to unsubscribe and then send your name in to resubscribe with new pronouns.')
                 return { headers, statusCode: 200, body: 'ok' }
