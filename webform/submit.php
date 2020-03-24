@@ -6,13 +6,10 @@ $pronouns = $_POST['Pronouns'];
 
 $postData = '{"name": "' . $name . '", "msisdn": "' . $msisdn . '", "pronouns": "' . $pronouns . '"}';
 
-$context = stream_context_create(array(
-    'http' => array(
-        'method' => 'POST',
-        'header' => "Content-Type: application/json\r\n",
-        'content' => json_encode($postData)
-    )
-));
+
+echo $postData;
+
+echo "..........";
 
 $ch = curl_init( 'https://affirmation-station.netlify.com/.netlify/functions/create' );
 # Setup request to send json via POST.
@@ -23,4 +20,7 @@ curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 # Send request.
 $result = curl_exec($ch);
 curl_close($ch);
+
+echo $result;
+
 ?>
